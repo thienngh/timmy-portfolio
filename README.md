@@ -1,4 +1,4 @@
 # timmy-portfolio
 The portfolio of Timmy
 
-Index is the frequently updated version.
+index.html is the updated website
