@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thien (Timmy) Nguyen Huu — Bioengineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F2EC;
+    --bg-card: #FDFBF7;
+    --ink: #1A1814;
+    --ink-mid: #5A5650;
+    --ink-light: #9A968F;
+    --accent: #2D5A3D;
+    --accent-light: #E8F0EA;
+    --accent2: #8B4A2A;
+    --accent2-light: #F5EBE4;
+    --border: rgba(26,24,20,0.1);
+    --border-strong: rgba(26,24,20,0.2);
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Instrument Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.7; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 56px;
+    background: rgba(245,242,236,0.92); backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 17px; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-mid); text-decoration: none; letter-spacing: 0.03em; cursor: pointer; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-back { display: none; font-size: 13px; color: var(--ink-mid); cursor: pointer; align-items: center; gap: 6px; }
+  .nav-back:hover { color: var(--ink); }
+
+  /* LAYOUT */
+  .page { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 5rem 0 2rem; }
+
+  /* HERO */
+  #hero { padding-top: 7rem; padding-bottom: 3rem; }
+  .hero-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 2rem; align-items: end; }
+  .hero-copy { min-width: 0; position: relative; z-index: 2; }
+  .hero-photo { width: 100%; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; border: 0.5px solid var(--border-strong); background: var(--bg-card); position: relative; z-index: 1; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 34%; display: block; }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero-name { font-family: var(--serif); font-size: clamp(42px, 6vw, 72px); line-height: 1.05; margin-bottom: 1.5rem; }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-desc { font-size: 17px; color: var(--ink-mid); max-width: 540px; line-height: 1.75; margin-bottom: 2rem; }
+  .hero-quote { font-family: var(--serif); font-size: 24px; line-height: 1.35; color: var(--ink); max-width: 560px; margin: -0.75rem 0 2rem; border-left: 2px solid var(--accent); padding-left: 1rem; }
+  .hero-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; padding: 6px 14px; border-radius: 999px; border: 0.5px solid var(--border-strong); color: var(--ink-mid); text-decoration: none; background: var(--bg-card); letter-spacing: 0.03em; }
+  .chip:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+  .chip svg { width: 13px; height: 13px; }
+
+  /* SECTION LABEL */
+  .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
+  .label::after { content: ''; flex: 1; height: 0.5px; background: var(--border-strong); }
+
+  /* PROJECT GRID */
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px; }
+  .project-card {
+    background: var(--bg-card); border: 0.5px solid var(--border-strong); border-radius: 12px;
+    padding: 1.75rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+  .project-card.featured { border-color: var(--accent); }
+  .card-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 1rem; }
+  .tag-green { background: var(--accent-light); color: var(--accent); }
+  .tag-brown { background: var(--accent2-light); color: var(--accent2); }
+  .tag-gray { background: #EEEBE5; color: var(--ink-mid); }
+  .card-title { font-family: var(--serif); font-size: 20px; line-height: 1.25; margin-bottom: 0.75rem; }
+  .card-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.7; flex: 1; }
+  .card-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.25rem; }
+  .metric { font-family: var(--mono); font-size: 11px; color: var(--ink-light); background: var(--bg); padding: 4px 10px; border-radius: 4px; border: 0.5px solid var(--border); }
+  .card-arrow { margin-top: 1.25rem; font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+
+  /* EXPERIENCE */
+  .exp-item { padding: 1.5rem 0; border-bottom: 0.5px solid var(--border); display: grid; grid-template-columns: 1fr 160px; gap: 1rem; }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-role { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .exp-org { font-size: 13px; color: var(--ink-mid); margin-bottom: 0.75rem; }
+  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--ink-light); text-align: right; padding-top: 3px; }
+  .exp-bullets { list-style: none; padding: 0; }
+  .exp-bullets li { font-size: 13px; color: var(--ink-mid); line-height: 1.65; padding: 3px 0 3px 14px; position: relative; }
+  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--ink-light); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .skill-group { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .skill-group-name { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 0.75rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag { font-size: 12px; background: var(--bg); border: 0.5px solid var(--border); border-radius: 4px; padding: 4px 9px; color: var(--ink-mid); }
+
+  /* CONTACT */
+  .contact-row { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+  .contact-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-mid); text-decoration: none; }
+  .contact-item:hover { color: var(--accent); }
+  .contact-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .gpa-badge { display: inline-block; font-family: var(--mono); font-size: 11px; background: var(--accent-light); color: var(--accent); padding: 4px 12px; border-radius: 4px; }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem 0; margin-top: 3rem; text-align: center; }
+  footer p { font-family: var(--mono); font-size: 11px; color: var(--ink-light); }
+
+  /* ============ PROJECT DETAIL PAGES ============ */
+  .detail-page { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 200; overflow-y: auto; }
+  .detail-page.active { display: block; }
+  .detail-inner { max-width: 800px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+
+  .detail-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1rem; }
+  .detail-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 46px); line-height: 1.1; margin-bottom: 1.5rem; }
+  .detail-lead { font-size: 17px; color: var(--ink-mid); line-height: 1.8; margin-bottom: 2.5rem; border-left: 2px solid var(--accent); padding-left: 1.25rem; }
+
+  .detail-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 3rem; }
+  .stat-box { background: var(--bg-card); border: 0.5px solid var(--border-strong); border-radius: 8px; padding: 1rem 1.25rem; }
+  .stat-val { font-family: var(--serif); font-size: 26px; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); }
+
+  .detail-section { margin-bottom: 2.5rem; }
+  .detail-section h2 { font-family: var(--serif); font-size: 22px; margin-bottom: 1rem; }
+  .detail-section p { font-size: 14px; color: var(--ink-mid); line-height: 1.8; margin-bottom: 0.75rem; }
+  .detail-section ul { padding-left: 0; list-style: none; }
+  .detail-section li { font-size: 14px; color: var(--ink-mid); line-height: 1.7; padding: 5px 0 5px 16px; position: relative; }
+  .detail-section li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; top: 7px; }
+
+  .pipeline-steps { display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0; }
+  .pipeline-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 0.5px solid var(--border); }
+  .pipeline-step:last-child { border-bottom: none; }
+  .step-num { font-family: var(--mono); font-size: 11px; color: var(--accent); background: var(--accent-light); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .step-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+  .code-block { background: var(--ink); color: #E8E4DC; font-family: var(--mono); font-size: 12px; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1rem 0; overflow-x: auto; line-height: 1.7; }
+  .code-comment { color: #7A756B; }
+  .code-key { color: #A8C5A0; }
+  .code-val { color: #D4A574; }
+
+  .link-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; padding: 10px 20px; border-radius: 6px; background: var(--accent); color: white; text-decoration: none; margin-top: 0.5rem; letter-spacing: 0.04em; }
+  .link-btn:hover { background: #224D32; }
+  .home-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; padding: 8px 14px; border-radius: 6px; border: 0.5px solid var(--border-strong); background: var(--bg-card); color: var(--ink-mid); text-decoration: none; cursor: pointer; margin-bottom: 1.5rem; letter-spacing: 0.04em; }
+  .home-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+  .detail-divider { height: 0.5px; background: var(--border-strong); margin: 2.5rem 0; }
+
+  .video-placeholder { background: var(--ink); border-radius: 10px; aspect-ratio: 16/9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; margin: 1.25rem 0; }
+  .video-placeholder p { font-family: var(--mono); font-size: 11px; color: #7A756B; }
+  .play-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  .figure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 1.25rem 0; }
+  .project-figure { background: var(--bg-card); border: 0.5px solid var(--border-strong); border-radius: 8px; overflow: hidden; }
+  .project-figure.wide { grid-column: 1 / -1; }
+  .project-figure img { display: block; width: 100%; height: auto; background: #fff; }
+  .project-figure figcaption { font-family: var(--mono); font-size: 10px; line-height: 1.55; color: var(--ink-light); padding: 10px 12px; border-top: 0.5px solid var(--border); background: var(--bg-card); }
+  .demo-video { width: 100%; display: block; border-radius: 8px; border: 0.5px solid var(--border-strong); background: var(--ink); margin: 1.25rem 0 0.5rem; }
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 1rem 0; }
+  .resource-link { display: block; background: var(--bg-card); border: 0.5px solid var(--border-strong); border-radius: 8px; padding: 0.9rem 1rem; color: inherit; text-decoration: none; }
+  .resource-link:hover { border-color: var(--accent); background: var(--accent-light); }
+  .resource-title { font-size: 13px; font-weight: 600; line-height: 1.35; margin-bottom: 2px; }
+  .resource-meta { font-family: var(--mono); font-size: 10px; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.06em; }
+  .report-callout { background: var(--bg-card); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1rem 0; }
+  .compact-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 13px; }
+  .compact-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-light); text-align: left; padding: 8px 10px; border-bottom: 0.5px solid var(--border-strong); }
+  .compact-table td { color: var(--ink-mid); padding: 8px 10px; border-bottom: 0.5px solid var(--border); vertical-align: top; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .detail-inner > * { animation: fadeIn 0.3s ease both; }
+  .detail-inner > *:nth-child(2) { animation-delay: 0.05s; }
+  .detail-inner > *:nth-child(3) { animation-delay: 0.1s; }
+  .detail-inner > *:nth-child(4) { animation-delay: 0.15s; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .page { padding: 0 1rem; }
+    .project-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-date { text-align: left; }
+    .detail-inner { padding: 4.5rem 1rem 3rem; }
+    .hero-wrap { grid-template-columns: 1fr; align-items: start; }
+    .hero-photo { max-width: 280px; }
+  }
+
+  /* EQUATION BLOCKS */
+  .eq-block { margin: 1.25rem 0; border: 0.5px solid var(--border-strong); border-radius: var(--border-radius-md); overflow: hidden; }
+  .eq-row { display: grid; grid-template-columns: 160px 1fr; border-bottom: 0.5px solid var(--border); }
+  .eq-row:last-child { border-bottom: none; }
+  .eq-label { font-family: var(--mono); font-size: 11px; color: var(--ink-light); padding: 10px 14px; background: var(--bg); border-right: 0.5px solid var(--border); display: flex; align-items: center; }
+  .eq-math { font-family: var(--mono); font-size: 13px; padding: 10px 14px; color: var(--ink); background: var(--bg-card); }
+
+  /* RESULTS TABLE */
+  .results-table-wrap { overflow-x: auto; margin: 1rem 0; }
+  .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .results-table th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-light); padding: 8px 12px; border-bottom: 0.5px solid var(--border-strong); text-align: left; white-space: nowrap; }
+  .results-table td { padding: 8px 12px; border-bottom: 0.5px solid var(--border); color: var(--ink-mid); white-space: nowrap; }
+  .results-table tbody tr:hover td { background: var(--bg); }
+  .err-pos { color: #185FA5; font-family: var(--mono); }
+  .err-neg { color: #A32D2D; font-family: var(--mono); }
+  .diag-ok { color: #0F6E56; font-family: var(--mono); font-size: 11px; }
+  .diag-warn { color: #854F0B; font-family: var(--mono); font-size: 11px; }
+  .avg-row td { font-weight: 600; border-top: 1px solid var(--border-strong); background: var(--bg); }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="#" onclick="showHome()">Timmy NH</a>
+  <ul class="nav-links" id="nav-home-links">
+    <li><a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a></li>
+    <li><a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Experience</a></li>
+    <li><a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a></li>
+    <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+  </ul>
+  <div class="nav-back" id="nav-back" onclick="showHome()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+    Back to portfolio
+  </div>
+</nav>
+
+<!-- =================== MAIN HOME =================== -->
+<div id="home-page">
+<main class="page">
+
+  <section id="hero">
+    <div class="hero-wrap">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">UC Berkeley · Bioengineering</p>
+        <h1 class="hero-name">Thien<br><em>(Timmy)</em><br>Nguyen Huu</h1>
+        <p class="hero-desc">Bioengineer building biosensors, genomic tools, and biomedical devices — focused on making biology measurable at the point of care.</p>
+        <p class="hero-quote">“Making hidden biology visible at the point of care.”</p>
+        <div class="hero-row">
+          <span class="chip">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+            GPA 4.0 / 4.0
+          </span>
+          <a href="mailto:thien.ngh@berkeley.edu" class="chip">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M2 4l6 5 6-5"/></svg>
+            thien.ngh@berkeley.edu
+          </a>
+          <a href="https://github.com/thienngh" target="_blank" class="chip">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            github/thienngh
+          </a>
+          <a href="https://www.linkedin.com/in/thien-nguyen-huu-1a74632b8" target="_self" class="chip">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M2.1 5.6h2.4V14H2.1V5.6zM3.3 1.6a1.4 1.4 0 110 2.8 1.4 1.4 0 010-2.8zM6.2 5.6h2.3v1.1h.03c.32-.6 1.1-1.24 2.27-1.24 2.43 0 2.88 1.6 2.88 3.68V14h-2.4V9.66c0-1.04-.02-2.37-1.44-2.37-1.45 0-1.67 1.13-1.67 2.3V14H6.2V5.6z"/></svg>
+            LinkedIn
+          </a>
+          <span class="chip">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2a5 5 0 110 10A5 5 0 018 2z"/><path d="M2 8h12M8 2c-1.5 2-2.5 4-2.5 6s1 4 2.5 6M8 2c1.5 2 2.5 4 2.5 6S9.5 14 8 14"/></svg>
+            Open to relocation
+          </span>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img src="timmy_portfolio_assets/headshot.jpg" alt="Portrait of Thien Timmy Nguyen Huu">
+      </figure>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="label">Featured projects</p>
+    <div class="project-grid">
+
+      <a class="project-card featured" onclick="showDetail('spirometer')" href="#">
+        <span class="card-tag tag-green">Bioinstrumentation · Embedded</span>
+        <h2 class="card-title">Differential Pressure Spirometer</h2>
+        <p class="card-desc">A fully functional lung-function analyzer built around an MPX2010DP pressure sensor, INA163 instrumentation amplifier, Arduino Mega, and a Python data-acquisition pipeline — with 3-LED countdown UX and LCD result display.</p>
+        <div class="card-metrics">
+          <span class="metric">349.8 Hz sensor BW</span>
+          <span class="metric">100 Hz acquisition</span>
+          <span class="metric">LTspice signal chain</span>
+          <span class="metric">FEV1 + FVC output</span>
+        </div>
+        <p class="card-arrow">View project →</p>
+      </a>
+
+      <a class="project-card featured" onclick="showDetail('ctdna')" href="#">
+        <span class="card-tag tag-brown">Microfluidics · Electrochemistry</span>
+        <h2 class="card-title">CNT Integrated Impedance Microfluidic Sensor for ctDNA</h2>
+        <p class="card-desc">Multilayer liquid-biopsy platform combining screen-printed CNT electrodes, AC impedance spectroscopy, and on-chip purification/denaturation workflows for quantitative circulating tumour DNA detection.</p>
+        <div class="card-metrics">
+          <span class="metric">~85–90% processing efficiency</span>
+          <span class="metric">2× SNR improvement</span>
+          <span class="metric">20–30% impedance differentiation</span>
+        </div>
+        <p class="card-arrow">View project →</p>
+      </a>
+
+      <div class="project-card">
+        <span class="card-tag tag-gray">CNT · Multi-analyte</span>
+        <h2 class="card-title">6-Channel CNT Biosensor for Diabetes &amp; Cancer</h2>
+        <p class="card-desc">Multi-channel CNT-based biosensor for simultaneous detection of six molecular biomarkers linked to diabetes and cancer. Integrates microfabrication and circuit analysis. Prototype under review by Jadoo Technology.</p>
+        <div class="card-metrics">
+          <span class="metric">6 simultaneous analytes</span>
+          <span class="metric">Jadoo Technology review</span>
+        </div>
+      </div>
+
+      <a class="project-card" onclick="showDetail('breathbiomics')" href="#">
+        <span class="card-tag tag-gray">Embedded · VOC sensing</span>
+        <h2 class="card-title">BreathBiomics Gas-Sensor Array</h2>
+        <p class="card-desc">ESP32-powered portable device integrating MQ-series and Bosch sensors with sensor-fusion algorithms to profile disease-associated volatile organic compounds in real time — a proof-of-concept for noninvasive breath diagnostics.</p>
+        <div class="card-metrics">
+          <span class="metric">Real-time VOC profiling</span>
+          <span class="metric">Noninvasive</span>
+          <span class="metric">Sensor fusion</span>
+        </div>
+        <p class="card-arrow">View project →</p>
+      </a>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="label">Research &amp; work experience</p>
+    <div>
+      <div class="exp-item">
+        <div>
+          <p class="exp-role">Undergraduate Researcher</p>
+          <p class="exp-org">Moriel Vandsburger Lab, UC Berkeley</p>
+          <ul class="exp-bullets">
+            <li>MRI phantom fabrication across pH conditions for cardiac metabolic imaging (creatine studies)</li>
+            <li>AAV-based gene therapy experiments in murine models evaluating in vivo delivery and expression</li>
+            <li>qPCR on mouse liver samples; ELISA and tissue processing to evaluate therapeutic outcomes</li>
+          </ul>
+        </div>
+        <div class="exp-date">Jan 2026 – present</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <p class="exp-role">Research Associate</p>
+          <p class="exp-org">Center of CRISPR Target Discovery, Innovative Genomics Institute — Berkeley, CA</p>
+          <ul class="exp-bullets">
+            <li>Executed molecular cloning and pooled CRISPR screening workflows, including gRNA library preparation, DNA assembly, bacterial culture expansion, PCR, gel electrophoresis, and sequencing-based construct validation</li>
+            <li>Supported CRISPR-Cas9 knockout screen preparation by maintaining plasmid library quality, preserving guide RNA representation, and preparing samples for downstream NGS-based readout</li>
+            <li>Processed genomic DNA samples and amplified integrated sgRNA cassettes from screened cell populations to enable quantitative comparison of guide enrichment and depletion across experimental rounds</li>
+            <li>Interpreted Sanger sequencing and NGS-related results to confirm plasmid identity, guide sequence accuracy, and screening-library performance</li>
+            <li>Collaborated with cross-functional research teams under established SOPs to complete CRISPR screening service requests with strong attention to sample tracking, quality control, and reproducibility</li>
+          </ul>
+        </div>
+        <div class="exp-date">Oct 2025 – Present</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <p class="exp-role">Microbiologist Intern</p>
+          <p class="exp-org">Nam Khoa Biotek, Ho Chi Minh City, Vietnam</p>
+          <ul class="exp-bullets">
+            <li>Processed clinical patient samples including blood, lung fluid, genital fluid, and human waste specimens using microbiological diagnostic workflows for pathogen identification</li>
+            <li>Performed Gram staining, Ziehl-Neelsen staining, microscopic examination, and TB screening to evaluate bacterial morphology, acid-fast organisms, and infection-related findings</li>
+            <li>Conducted antibiotic susceptibility testing, MIC assays, and antibiogram preparation on ~30 patient samples/day to support treatment decisions for partner hospitals across Ho Chi Minh City</li>
+            <li>Prepared bacterial cultures across multiple media types, including selective environments for organisms such as H. pylori, matching culture conditions to suspected pathogen profiles</li>
+            <li>Supported quality control and turnaround during high-volume periods and staff shortages, contributing to preliminary clinical reports with a four-member laboratory team</li>
+          </ul>
+        </div>
+        <div class="exp-date">Jun 2024 – Aug 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-name">Molecular biology</p>
+        <div class="skill-tags">
+          <span class="skill-tag">PCR / qPCR</span>
+          <span class="skill-tag">Sanger / NGS prep</span>
+          <span class="skill-tag">Molecular cloning</span>
+          <span class="skill-tag">CRISPR–Cas9</span>
+          <span class="skill-tag">Bacterial culture</span>
+          <span class="skill-tag">Mammalian cell culture</span>
+          <span class="skill-tag">ELISA</span>
+          <span class="skill-tag">Gram/ZN staining</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-name">Engineering &amp; devices</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Circuit design</span>
+          <span class="skill-tag">Bioinstrumentation</span>
+          <span class="skill-tag">Microfluidics</span>
+          <span class="skill-tag">SolidWorks CAD</span>
+          <span class="skill-tag">Signal acquisition</span>
+          <span class="skill-tag">Sensor fusion</span>
+          <span class="skill-tag">Analog front-end</span>
+          <span class="skill-tag">Arduino / embedded</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-name">Programming</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">Data acquisition</span>
+          <span class="skill-tag">Serial comms</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-name">Interpersonal</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Leadership</span>
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Scientific communication</span>
+          <span class="skill-tag">Problem-solving</span>
+          <span class="skill-tag">Strategic thinking</span>
+          <span class="skill-tag">Adaptability</span>
+          <span class="skill-tag">Detail-oriented documentation</span>
+          <span class="skill-tag">Troubleshooting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-bottom: 1rem;">
+    <p class="label">Contact</p>
+    <div class="contact-row">
+      <a href="tel:6692148609" class="contact-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h3l1.5 3.5-2 1.5a9 9 0 004.5 4.5l1.5-2L15 11v3a1 1 0 01-1 1C5.4 15 1 10.6 1 3a1 1 0 011-1z"/></svg>
+        669-214-8609
+      </a>
+      <a href="mailto:thien.ngh@berkeley.edu" class="contact-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M2 4l6 5 6-5"/></svg>
+        thien.ngh@berkeley.edu
+      </a>
+      <a href="https://www.linkedin.com/in/thien-nguyen-huu-1a74632b8" target="_self" class="contact-item">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2.1 5.6h2.4V14H2.1V5.6zM3.3 1.6a1.4 1.4 0 110 2.8 1.4 1.4 0 010-2.8zM6.2 5.6h2.3v1.1h.03c.32-.6 1.1-1.24 2.27-1.24 2.43 0 2.88 1.6 2.88 3.68V14h-2.4V9.66c0-1.04-.02-2.37-1.44-2.37-1.45 0-1.67 1.13-1.67 2.3V14H6.2V5.6z"/></svg>
+        LinkedIn
+      </a>
+      <span class="contact-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1a5 5 0 00-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 00-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z"/></svg>
+        San Jose, CA · open to relocation
+      </span>
+    </div>
+    <div style="margin-top: 1rem;">
+      <span class="gpa-badge">UC Berkeley · GPA 4.0</span>
+      &nbsp;
+      <span class="gpa-badge">De Anza College · GPA 4.0 · Student Athlete of the Year</span>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <div class="page">
+    <p>Thien (Timmy) Nguyen Huu · Bioengineering Portfolio · 2026</p>
+  </div>
+</footer>
+</div>
+
+<!-- =================== SPIROMETER DETAIL =================== -->
+<div class="detail-page" id="detail-spirometer">
+<div class="detail-inner">
+  <button class="home-btn" onclick="showHome()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+    Back to Home
+  </button>
+  <p class="detail-eyebrow">Bioinstrumentation · Embedded systems · Signal processing · Apr 2026</p>
+  <h1 class="detail-title">The G"air"y — Differential Pressure<br>Spirometer with Analog Front End</h1>
+  <p class="detail-lead">A fully functional, low-cost lung-function analyzer built from scratch that measures clinically relevant FEV1 and FVC values with an average error of ~5.8% compared to a gold-standard commercial device. The system integrates a Venturi-tube pneumotachograph, a precision analog signal chain (MPX2010DP → INA163 → LM324 bandpass filter → Arduino Mega ADC), and a Python data-acquisition pipeline with Bernoulli-based flow computation — all wrapped in a user-friendly interface with a 3-LED countdown and LCD result display.</p>
+
+  <div class="detail-stats">
+    <div class="stat-box">
+      <p class="stat-val">~5.8%</p>
+      <p class="stat-label">Avg FEV1 error vs gold standard</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">~148×</p>
+      <p class="stat-label">Front-end gain</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">100 Hz</p>
+      <p class="stat-label">Sampling rate</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">F = 1.1</p>
+      <p class="stat-label">Noise figure (INA163)</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">SNR/√1.1</p>
+      <p class="stat-label">SNR retained vs thermal limit</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">10-bit</p>
+      <p class="stat-label">ADC resolution (prudent rule)</p>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- CLINICAL MOTIVATION -->
+  <div class="detail-section">
+    <h2>Clinical motivation</h2>
+    <ul>
+      <li>Spirometry is the standard pulmonary function test for diagnosing and monitoring obstructive and restrictive lung disease.</li>
+      <li>COPD was the fourth leading cause of death worldwide in 2021, while asthma affected an estimated 363 million people in 2023.</li>
+      <li>The project goal was to make a lower-cost device that still reports clinically meaningful spirometry metrics.</li>
+    </ul>
+    <p>The two key metrics are:</p>
+    <ul>
+      <li><strong>FEV1</strong> (Forced Expiratory Volume in 1 second) — total air exhaled in the first second of a maximal forced exhalation, in litres.</li>
+      <li><strong>FVC</strong> (Forced Vital Capacity) — total air exhaled over the full forced exhalation maneuver.</li>
+      <li><strong>FEV1/FVC ratio</strong> — the key diagnostic screen: a ratio below 0.7 indicates obstructive disease (asthma, COPD); FVC below 80% predicted signals restrictive disease. Lower FEV1% corresponds to increasing severity.</li>
+    </ul>
+    <ul>
+      <li>Clinical spirometers commonly cost $1,000-$3,000.</li>
+      <li>Portable home monitors are often $50-$150.</li>
+      <li>This build tested whether a sub-$30 architecture could approach useful accuracy with careful signal conditioning and calibration.</li>
+    </ul>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- PHYSICS -->
+  <div class="detail-section">
+    <h2>Physics: from pressure to flow to volume</h2>
+    <ul>
+      <li>We chose a 3D-printed Venturi tube because it is inexpensive, easy to fabricate, and maps pressure drop to flow through well-known fluid mechanics.</li>
+      <li>The Venturi narrows the flow path, accelerating air and creating a measurable pressure drop between the wide inlet and narrow throat.</li>
+      <li>The design uses d1 = 26 mm and d2 = 8 mm, then converts pressure difference into flow using Bernoulli and continuity.</li>
+    </ul>
+    <p>The governing derivation combines Bernoulli's equation with the continuity equation:</p>
+
+    <div class="eq-block">
+      <div class="eq-row">
+        <span class="eq-label">Bernoulli</span>
+        <span class="eq-math">P₁ − P₂ = ½ρ(v₂² − v₁²)</span>
+      </div>
+      <div class="eq-row">
+        <span class="eq-label">Continuity</span>
+        <span class="eq-math">A₁v₁ = A₂v₂  →  v₁ = (A₂/A₁)v₂</span>
+      </div>
+      <div class="eq-row">
+        <span class="eq-label">Solve for v₂</span>
+        <span class="eq-math">v₂ = √[ 2ΔP / ρ(1 − (A₂/A₁)²) ]</span>
+      </div>
+      <div class="eq-row">
+        <span class="eq-label">Flow rate Q</span>
+        <span class="eq-math">Q = A₂ · v₂ = A₂ √[ 2ΔP / ρ(1 − (A₂/A₁)²) ]</span>
+      </div>
+      <div class="eq-row">
+        <span class="eq-label">Volume V(t)</span>
+        <span class="eq-math">V(t) = ∫₀ᵗ Q(τ) dτ  →  FEV1 at t=1s, FVC at end of breath</span>
+      </div>
+    </div>
+
+    <p>Parameters: ρ = 1.225 kg/m³ (air), A₁ = π(0.013)² m², A₂ = π(0.004)² m². Trade-off: the Venturi model assumes laminar, incompressible flow — 3D-printed surfaces introduce roughness and dimensional imperfections that cause minor turbulence and measurement scatter, contributing to the ~5.8% average error.</p>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Tube design</h2>
+    <ul>
+      <li>The airflow path uses a 3D-printed Venturi tube so the pressure sensor can measure the pressure difference between the wider inlet and narrow throat.</li>
+      <li>The throat increases airflow velocity and lowers local pressure, producing the pressure drop used in the Bernoulli flow calculation.</li>
+      <li>Separate nozzle pieces were modeled so the mouthpiece geometry could be iterated without redesigning the full Venturi body.</li>
+    </ul>
+    <div class="figure-grid">
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/spirometer/venturi-prototype-closeup.jpg" alt="Close-up of the 3D-printed Venturi tube connected to pressure tubing">
+        <figcaption>Close-up of the working Venturi tube with tubing attached at the pressure taps used for differential pressure measurement.</figcaption>
+      </figure>
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/spirometer/tube-design-stl-renders.jpg" alt="Rendered STL views of the Venturi tube and nozzle parts">
+        <figcaption>Rendered STL views of the Venturi tube and the two nozzle pieces used for the spirometer airflow path.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- SIGNAL CHAIN -->
+  <div class="detail-section">
+    <h2>Analog signal chain</h2>
+    <ul>
+      <li>Forced breathing produces small pressure-dependent sensor voltages, roughly millivolt-scale before amplification.</li>
+      <li>The Arduino ADC cannot resolve that signal cleanly without amplification, common-mode rejection, and anti-aliasing.</li>
+      <li>The front end therefore uses a pressure sensor, instrumentation amplifier, active filters, and Arduino sampling as one coordinated chain.</li>
+    </ul>
+
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">MPX2010DP — differential pressure sensor</p>
+          <p class="step-desc">Piezoresistive Wheatstone-bridge sensor with 2.5 mV/kPa sensitivity and 0–10 kPa operating range. Source impedance Rs = 1,400–3,000 Ω (assumed Rs = 2,000 Ω for noise analysis). Sensor bandwidth: 349.8 Hz (10%–90% response time), well above the 40 Hz signal band. The sensor's differential output feeds directly into the INA163's instrumentation inputs, providing common-mode rejection of environmental noise before any amplification.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">INA163 instrumentation amplifier — gain ~148× (Rg = 40.6 Ω)</p>
+          <p class="step-desc">The INA163 was selected for optimal noise matching with the sensor's ~2 kΩ source impedance. Key specs: voltage noise en = 1 nV/√Hz, current noise in = 0.8 pA/√Hz, equivalent noise resistance Rn = en/in = 1,250 Ω. The noise figure F quantifies SNR degradation introduced by the amplifier:</p>
+          <div class="code-block">
+<span class="code-comment">// Noise figure derivation (T = 300 K, Rs = 1,400–3,000 Ω)</span>
+<span class="code-key">F</span> = (N²_total) / (N²_thermal)
+  = [4kTRs + en² + in²·Rs²]·Δf  /  4kTRs·Δf
+  = 1 + en²/(4kTRs) + in²·Rs/(4kT)
+
+<span class="code-comment">// Result across sensor impedance range:</span>
+<span class="code-val">F = [1.097, 1.136]  →  F ≈ 1.1</span>
+
+<span class="code-comment">// SNR retained vs thermal-noise limit:</span>
+<span class="code-key">SNR_overall</span> = SNR_thermal / √1.1  <span class="code-comment">≈ 95% of ideal</span>
+          </div>
+          <p class="step-desc">An F of 1.1 means the INA163 contributes only ~10% additional noise power beyond thermal — excellent for a low-cost component. The INA163 also rejects 60 Hz common-mode interference via its CMRR: at the operating gain (~148×, Rg = 40.6 Ω), CMR ≈ 105 dB, attenuating V_common-mode by a factor of ~8×10⁻⁴ before the signal even reaches the filter stage.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-title">LM324 bandpass filter — 0.05 Hz HPF + 40 Hz LPF (also the AAF)</p>
+          <p class="step-desc">A two-stage active filter using LM324 op-amps removes DC drift and out-of-band noise. Stage 1 (HPF, fc = 0.05 Hz): C1 = 2.2 µF, R1 = R2 = 1.5 MΩ — removes sensor DC offset and very slow drift. Stage 2 (LPF, fc = 40 Hz): R3 = R4 = 3.6 kΩ, C2 = 1.1 µF — this stage doubles as the anti-aliasing filter (AAF), attenuating frequencies that would alias when sampled at 100 Hz.</p>
+          <p class="step-desc">Sampling rate derivation using the Prudent Nyquist rule (signal bandwidth BW = 15–25 Hz, physiologic breathing; set to 30 Hz system BW, AAF at 40 Hz):</p>
+          <div class="code-block">
+<span class="code-comment">// Prudent Nyquist: fs > BW(1 + A^(1/N))</span>
+<span class="code-comment">// 2nd-order filter (N=2), attenuation A = (fs/fc)²</span>
+<span class="code-key">f_s,min</span> = 2·BW + BW·A^(1/N) = 30 + 15·3^(1/2) ≈ <span class="code-val">55.98 Hz</span>
+<span class="code-comment">// Chose 100 Hz for additional aliasing attenuation (3rd order)</span>
+<span class="code-comment">// Sensor SNR = 55 → need 10 bits (Prudent Rule: bits = SNR/6)</span>
+<span class="code-key">Arduino Mega ADC</span>: 10-bit, fc = 40 Hz → <span class="code-val">✓ meets both requirements</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-title">Arduino Mega — 100 Hz precise sampling + serial streaming</p>
+          <p class="step-desc">The Arduino samples the conditioned analog signal at A0 with microsecond-accurate timing (Ts = 10,000 µs, using micros()-based busy-wait loop rather than delay() to avoid jitter). A 4-second baseline window streams "B,{adc}" samples to Python before issuing a "START" marker, then streams 10 seconds of raw ADC values at 115,200 baud, followed by "END". This architecture offloads the computationally expensive Venturi flow calculation to Python while the Arduino handles real-time sampling and UX.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Prototype build</h2>
+    <p>The full prototype combines the airflow path, sensing hardware, analog conditioning circuit, Arduino control board, LCD, LED countdown interface, and laptop acquisition workflow.</p>
+    <div class="figure-grid">
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/spirometer/spirometer-setup.jpg" alt="Spirometer bench setup with Venturi tube, pressure sensor, breadboards, Arduino Mega, LCD, and LEDs">
+        <figcaption>Bench prototype showing the 3D-printed Venturi tube, differential pressure tubing, MPX2010DP pressure sensor, breadboarded analog front end, Arduino Mega, LCD display, LED countdown board, and lab instrumentation.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Why these components?</h2>
+    <ul>
+      <li><strong>Venturi tube geometry:</strong> d1 = 26 mm inlet and d2 = 8 mm throat created a measurable pressure drop while staying large enough for comfortable forced exhalation. This was easier and cheaper to 3D print than a Fleisch capillary bundle.</li>
+      <li><strong>MPX2010DP pressure sensor:</strong> 0-10 kPa range covers expected forced-expiration pressure without saturating, 2.5 mV/kPa sensitivity gives a measurable bridge output, and ~350 Hz sensor bandwidth is well above the 15-25 Hz breathing signal band.</li>
+      <li><strong>INA163 instrumentation amplifier:</strong> selected because the sensor output is differential and millivolt-scale. With Rg = 40.6 ohm, gain is about 148x, CMRR rejects shared 60 Hz pickup, and the 1 nV/sqrt(Hz) voltage noise works well with the sensor's ~1.4-3.0 kOhm source impedance.</li>
+      <li><strong>Gain choice:</strong> high enough to lift the pressure signal into the Arduino ADC range, but not so high that strong exhalations immediately rail at 5 V. This was the main gain-vs-saturation tradeoff.</li>
+      <li><strong>LM324 filter stages:</strong> chosen because they were available, low-cost, and adequate for the low-frequency spirometry band. The 0.05 Hz high-pass removes DC drift; the 40 Hz low-pass removes out-of-band noise and acts as the anti-aliasing filter.</li>
+      <li><strong>Arduino Mega:</strong> chosen for a simple 10-bit ADC, stable 100 Hz sampling with micros() timing, and enough I/O for LCD, LEDs, and serial data transfer.</li>
+      <li><strong>Python acquisition:</strong> used for the heavier math: baseline correction, pressure-to-flow conversion, FEV1/FVC integration, and live plotting. Keeping this on the laptop made the embedded code simpler and easier to debug.</li>
+    </ul>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>LTspice model</h2>
+    <p>The analog front end was modeled before breadboarding to confirm the preamp and filter stages matched the spirometry signal band.</p>
+    <div class="figure-grid">
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/spirometer/ltspice-signal-chain.jpg" alt="LTspice circuit with INA163 preamplifier and LM324 high-pass and low-pass filter stages">
+        <figcaption>LTspice signal-chain model showing the INA163 preamplifier followed by LM324 filtering: a 0.05 Hz high-pass stage for drift removal and a 40 Hz low-pass stage for noise reduction and anti-aliasing.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- DATA ACQUISITION & PROCESSING -->
+  <div class="detail-section">
+    <h2>Python data acquisition & signal processing pipeline</h2>
+    <ul>
+      <li>Serial communication with the Arduino at 115,200 baud.</li>
+      <li>Dynamic baseline calibration before each breath trial.</li>
+      <li>ADC-to-voltage, voltage-to-pressure, and pressure-to-flow conversion.</li>
+      <li>FEV1/FVC integration from the computed flow trace.</li>
+      <li>Real-time plots for voltage, pressure, and flow during debugging.</li>
+      <li>Validation plan from the proposal and GitHub docs: compare against a commercial spirometer and use a calibrated differential pressure reference to check waveform shape, amplitude, and integrated volume.</li>
+    </ul>
+
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">Dynamic baseline calibration</p>
+          <p class="step-desc">Python receives 4 seconds of "B,{adc}" baseline samples before any breath. It computes mean baseline voltage and runs the full Venturi equation on each baseline sample to establish the max baseline flow. The adaptive threshold is set to max(0.05, 1.2 × max_baseline_flow) L/s — this dynamically rejects sensor noise and motion artifact regardless of circuit-to-circuit variation, rather than using a hardcoded threshold.</p>
+          <div class="code-block">
+<span class="code-key">baseline_voltage</span> = mean(baseline_voltages)
+<span class="code-key">max_baseline_flow</span> = max(|Q(v)| for v in baseline_voltages)
+<span class="code-key">flow_threshold</span>   = max(0.05, 1.2 × max_baseline_flow)
+<span class="code-comment">// Breath detection only starts when |Q| > threshold</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">ADC → voltage → pressure → flow conversion</p>
+          <p class="step-desc">Each ADC value is converted through the full signal chain in reverse to recover physical flow rate. Key constants: VREF = 5.0 V, SENSITIVITY = 0.0025 V/kPa, INA163 GAIN ≈ 148, ρ = 1.225 kg/m³.</p>
+          <div class="code-block">
+<span class="code-comment">// Step 1: ADC → voltage</span>
+<span class="code-key">voltage</span>       = adc × (5.0 / 1023.0)
+<span class="code-key">delta_voltage</span> = max(voltage − baseline_voltage, 0.0)
+
+<span class="code-comment">// Step 2: voltage → pressure (undo gain and sensor sensitivity)</span>
+<span class="code-key">pressure_kpa</span>  = delta_voltage / (0.0025 × 148)
+<span class="code-key">pressure_pa</span>   = pressure_kpa × 1000
+
+<span class="code-comment">// Step 3: pressure → flow (Venturi/Bernoulli equation)</span>
+<span class="code-comment">// A2 = π(0.004)², A1 = π(0.013)², ρ = 1.225 kg/m³</span>
+<span class="code-key">flow_m3s</span> = A2 × √( 2·|ΔP| / (ρ·(1 − (A2/A1)²)) )
+<span class="code-key">flow_ls</span>  = flow_m3s × 1000  <span class="code-comment">// convert m³/s → L/s</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-title">FEV1 and FVC integration (discrete Riemann sum)</p>
+          <p class="step-desc">Volume is computed as the discrete integral of flow over time, implementing V(t) = ∫Q(τ)dτ numerically at DT = 0.01 s (100 Hz). FVC integration stops automatically when flow stays below threshold for 20 consecutive samples (~0.2 s) — this detects the physiological end of exhalation robustly without requiring a fixed recording window.</p>
+          <div class="code-block">
+<span class="code-comment">// FEV1: integrate first 1 second of breath</span>
+<span class="code-key">fev1_end</span> = min(start_idx + int(FS × 1.0), end_idx)
+<span class="code-key">FEV1</span>     = Σ |flows_Ls[i]| × DT  for i in [start_idx, fev1_end)
+
+<span class="code-comment">// FVC: integrate until flow drops below threshold for 20 samples</span>
+<span class="code-key">below_count</span> = 0
+for i in range(start_idx, len(flows)):
+    if |flows[i]| > threshold: below_count = 0
+    else:
+        below_count += 1
+        if below_count ≥ 20: end_idx = i − 19; break
+<span class="code-key">FVC</span> = Σ |flows_Ls[i]| × DT  for i in [start_idx, end_idx)
+
+<span class="code-comment">// Send results back to Arduino for LCD display</span>
+ser.write(f"R,{fev1:.2f},{fvc:.2f}\n".encode())
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-title">Real-time live plotting — 3 simultaneous windows</p>
+          <p class="step-desc">Three matplotlib figures update in real time during recording (every 50 ms): raw voltage (V), calibrated pressure (kPa), and computed flow rate (L/s). This lets the operator verify signal quality mid-breath — a critical debugging tool when tuning gain and threshold. Post-test, the script prints peak-to-peak voltage, pressure range, and flow range for manual SNR verification.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- UX -->
+  <div class="detail-section">
+    <h2>User experience — LED countdown + LCD display</h2>
+    <p>The Arduino firmware guides the user through a repeatable test sequence:</p>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-num">①</div>
+        <div class="step-body">
+          <p class="step-title">Baseline (4 s) — all LEDs off, LCD: "Waiting…"</p>
+          <p class="step-desc">Silent 4-second calibration window. The user stands still with the mouthpiece in hand. Arduino streams 400 baseline ADC samples to Python at 100 Hz.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">②</div>
+        <div class="step-body">
+          <p class="step-title">Countdown — LEDs light up 1 → 2 → 3, LCD: "Blow in 3/2/1"</p>
+          <p class="step-desc">Each second one more LED illuminates, giving the user a clear visual and textual countdown to prepare for maximal forced exhalation. The three-LED progression (setCountdownLeds(1), (2), (3)) gives an unambiguous "get ready" cue even in a noisy clinical environment.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">③</div>
+        <div class="step-body">
+          <p class="step-title">Recording — all LEDs off, LCD: "Blow now! / Time left: N"</p>
+          <p class="step-desc">LEDs all extinguish simultaneously as the "Blow now!" cue appears. LCD shows a live countdown of remaining recording time. The Python flow-detection threshold prevents any motion artifact before the breath starts from being counted.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">④</div>
+        <div class="step-body">
+          <p class="step-title">Results — all 3 LEDs flash 5×, LCD: "FEV1: X.XX L / FVC: X.XX L"</p>
+          <p class="step-desc">After Python computes FEV1 and FVC and sends them back via serial ("R,{fev1},{fvc}"), the Arduino parses the result, displays it on the 16×2 LCD, and flashes all three LEDs 5 times as a completion confirmation. The device then waits for the next trigger.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+<span class="code-comment">// LED countdown sequence (spirometer_mega_controller.ino)</span>
+<span class="code-key">setCountdownLeds</span>(1); delay(1000); <span class="code-comment">// "Blow in 3" — LED 1 on</span>
+<span class="code-key">setCountdownLeds</span>(2); delay(1000); <span class="code-comment">// "Blow in 2" — LEDs 1+2 on</span>
+<span class="code-key">setCountdownLeds</span>(3); delay(1000); <span class="code-comment">// "Blow in 1" — all 3 on</span>
+<span class="code-key">allLedsOff</span>();                       <span class="code-comment">// "Blow now!" — all off → START</span>
+Serial.println(<span class="code-val">"START"</span>);            <span class="code-comment">// trigger Python recording</span>
+<span class="code-comment">// ... 10 s recording window ...</span>
+Serial.println(<span class="code-val">"END"</span>);
+<span class="code-key">flashLeds</span>(3, 200, 200);             <span class="code-comment">// "calculating" flash</span>
+<span class="code-comment">// ... wait for Python R,fev1,fvc response ...</span>
+<span class="code-key">flashLeds</span>(5, 120, 120);             <span class="code-comment">// result confirmed!</span>
+    </div>
+    <p class="detail-eyebrow">Demo video: LED-guided spirometer workflow with Arduino control and live acquisition</p>
+    <video class="demo-video" controls playsinline preload="metadata">
+      <source src="timmy_portfolio_assets/spirometer/spirometer-demo.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- RESULTS -->
+  <div class="detail-section">
+    <h2>Measured results vs gold standard</h2>
+    <ul>
+      <li>Validated FEV1 against a Nascool commercial spirometer across 10 repeated trials on the same subject.</li>
+      <li>Average FEV1 error was approximately 5.8%.</li>
+      <li>The results are promising for a low-cost prototype, while still leaving room for production-level calibration and mechanical refinement.</li>
+    </ul>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr><th>Trial</th><th>Gold standard FEV1 (L)</th><th>G"air"y FEV1 (L)</th><th>Error (%)</th><th>FVC (L)</th><th>FEV1/FVC</th><th>Diagnosis</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>3.12</td><td>3.19</td><td class="err-pos">−2.24</td><td>5.12</td><td>0.62</td><td class="diag-warn">borderline</td></tr>
+          <tr><td>2</td><td>2.89</td><td>2.48</td><td class="err-neg">+14.19</td><td>4.03</td><td>0.62</td><td class="diag-warn">borderline</td></tr>
+          <tr><td>3</td><td>3.31</td><td>3.45</td><td class="err-pos">−4.23</td><td>4.21</td><td>0.82</td><td class="diag-ok">healthy</td></tr>
+          <tr><td>4</td><td>3.34</td><td>3.53</td><td class="err-pos">−5.69</td><td>4.94</td><td>0.71</td><td class="diag-ok">healthy</td></tr>
+          <tr><td>5</td><td>3.46</td><td>3.49</td><td class="err-pos">−0.87</td><td>4.91</td><td>0.71</td><td class="diag-ok">healthy</td></tr>
+          <tr><td>6</td><td>3.45</td><td>3.33</td><td class="err-neg">+3.48</td><td>5.70</td><td>0.58</td><td class="diag-warn">borderline</td></tr>
+          <tr><td>7</td><td>3.54</td><td>2.92</td><td class="err-neg">+17.51</td><td>4.67</td><td>0.63</td><td class="diag-warn">borderline</td></tr>
+          <tr><td>8</td><td>3.35</td><td>3.17</td><td class="err-neg">+5.37</td><td>3.48</td><td>0.91</td><td class="diag-ok">healthy</td></tr>
+          <tr><td>9</td><td>3.40</td><td>3.42</td><td class="err-pos">−0.59</td><td>4.01</td><td>0.85</td><td class="diag-ok">healthy</td></tr>
+          <tr><td>10</td><td>3.30</td><td>3.44</td><td class="err-pos">−4.24</td><td>4.62</td><td>0.74</td><td class="diag-ok">healthy</td></tr>
+          <tr class="avg-row"><td colspan="2"><strong>Average</strong></td><td><strong>3.24</strong></td><td><strong>~5.8% avg error</strong></td><td><strong>4.57</strong></td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>All FEV1/FVC ratios above 0.70 correctly returned a "healthy" result. Trials with borderline ratios (0.58–0.63) highlight the device's sensitivity to the lower end of the clinical threshold — where more data and calibration would be needed for a production device.</p>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <!-- TRADEOFFS -->
+  <div class="detail-section">
+    <h2>Design trade-offs & honest limitations</h2>
+    <ul>
+      <li><strong>Venturi vs Fleisch pneumotachograph:</strong> The Fleisch uses a bundle of capillaries to enforce laminar flow and a highly linear ΔP–Q relationship. The Venturi is far cheaper and easier to 3D print, but rough 3D-printed surfaces and imperfect throat dimensions introduce turbulence that the Bernoulli model doesn't account for — a primary source of the ~5.8% error.</li>
+      <li><strong>Gain vs saturation:</strong> Increasing INA163 gain improves SNR for mild breathers but risks ADC saturation on forced maximal exhalations (which can produce voltages approaching the 5 V ADC rail). The Rg = 40.6 Ω choice (~148×) was optimised for the expected healthy breathing range.</li>
+      <li><strong>Low-sensitivity sensor:</strong> The MPX2010DP at 2.5 mV/kPa was chosen for cost; higher-sensitivity sensors (e.g. MPXV7002DP reference device) would reduce the amplifier gain required and lower overall noise floor.</li>
+      <li><strong>Single-axis measurement:</strong> The device only measures exhalation flow. Clinical spirometers also capture inhalation loops for full flow-volume loop analysis.</li>
+      <li><strong>Temperature/humidity effects:</strong> Air density ρ is assumed constant at 1.225 kg/m³. In practice, exhaled air is ~37°C and ~100% humidity, affecting ρ and viscosity — a source of systematic bias not corrected in this implementation.</li>
+    </ul>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Team</h2>
+    <ul>
+      <li>Built with Lily Duong and Ryu Suzuki as part of the UC Berkeley bioinstrumentation lab sequence.</li>
+      <li>Personal contributions included system integration, Arduino control logic, Python data acquisition, signal-chain debugging, and report/presentation development.</li>
+      <li>Team skills strengthened: rapid prototyping, experiment documentation, troubleshooting under time pressure, and translating circuit behavior into a usable biomedical workflow.</li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 2rem; display: flex; gap: 12px; flex-wrap: wrap;">
+    <p style="flex-basis: 100%; font-size: 13px; color: var(--ink-mid); margin-bottom: 0.25rem;">Code, Arduino/Python acquisition files, and CAD design files are available in the GitHub repository.</p>
+    <a href="https://github.com/thienngh/differential-pressure-spirometer" target="_blank" class="link-btn">
+      <svg viewBox="0 0 16 16" fill="white" width="14" height="14"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      View on GitHub
+    </a>
+  </div>
+
+</div>
+</div>
+
+<!-- =================== ctDNA DETAIL =================== -->
+<div class="detail-page" id="detail-ctdna">
+<div class="detail-inner">
+  <button class="home-btn" onclick="showHome()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+    Back to Home
+  </button>
+  <p class="detail-eyebrow">Microfluidics · Electrochemistry · Liquid biopsy · R&amp;D concept</p>
+  <h1 class="detail-title">CNT Integrated Impedance<br>Microfluidic Sensor for ctDNA</h1>
+  <p class="detail-lead">A blood-based early breast cancer detection concept that pairs a microfluidic sample-preparation chip with an impedance readout circuit. The device is designed to isolate circulating tumor DNA (ctDNA), convert it to single-stranded DNA, expose it to functionalized carbon nanotube electrodes, and classify the resulting impedance response against calibrated ctDNA curves.</p>
+
+  <div class="detail-stats">
+    <div class="stat-box">
+      <p class="stat-val">10-100 kHz</p>
+      <p class="stat-label">Sweep band</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">1.2-1.4 kOhm</p>
+      <p class="stat-label">Modeled sensor range</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">26%</p>
+      <p class="stat-label">Estimated net binding</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">~$20</p>
+      <p class="stat-label">Target device cost</p>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Project motivation</h2>
+    <p>Breast cancer is the most common cancer in women worldwide, and early detection has a major survival benefit. Current routine screening leans heavily on mammography, which is expensive, uncomfortable, less effective in dense breast tissue, and typically begins around age 40 even though a meaningful fraction of cases occur earlier. The design question for this project was whether a blood test add-on could make earlier molecular screening more accessible.</p>
+    <p>ctDNA is attractive because tumor cells release fragmented DNA into the bloodstream, and those fragments can carry cancer-associated mutations such as TP53. Instead of sequencing the sample, this concept uses electrochemical impedance spectroscopy (EIS) to detect the interfacial change that occurs when target ctDNA hybridizes at functionalized electrodes.</p>
+  </div>
+
+  <div class="detail-section">
+    <h2>R&amp;D process</h2>
+    <p>Because this was an R&amp;D project, the work started less like a finished product and more like a design funnel. We first reviewed impedance-based cancer sensing papers to understand what a measurable signal should look like: tissue and DNA studies suggested that biological binding events change charge-transfer resistance, capacitance, and impedance spectra in ways that can be separated with the right frequency sweep.</p>
+    <p>The next design pass narrowed the target to a blood-compatible ctDNA workflow. We drafted several possible sensing routes, then chose an EIS approach because it is label-free, works naturally with electrodes, and can be reduced to a low-cost analog front end plus calibration software. From there, the project split into three linked design drafts: the microfluidic chip, the KiCad circuit/readout path, and the post-processing pipeline.</p>
+    <div class="report-callout">
+      <p><strong>Design thesis:</strong> prepare blood on-chip, bind TP53-associated ctDNA at functionalized CNT/electrode sites, sweep a 10-100 kHz excitation, then translate impedance curves into risk categories using reference curves built from known ctDNA concentrations.</p>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>System architecture</h2>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">Blood input and plasma separation</p>
+          <p class="step-desc">A blood droplet enters the inlet and passes through a plasma-separation channel so cells and debris can be diverted before the sample reaches the sensing chemistry.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">ctDNA purification</p>
+          <p class="step-desc">The plasma moves through a purification region with silica beads and reagent channels for binding buffer, wash buffer, and elution buffer, isolating ctDNA before the electrical measurement.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-title">Thermal denaturation</p>
+          <p class="step-desc">The eluted DNA is heated near 90 degrees C in an on-chip denaturation zone, converting double-stranded DNA into single-stranded ctDNA that can hybridize with probe-functionalized electrodes.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-title">CNT/electrode capture and impedance readout</p>
+          <p class="step-desc">The ssDNA enters a hybridization chamber at approximately pH 7.5-8.0, where TP53 exon 5-8 probe sequences on CNT/electrode sites bind the target. The circuit then sweeps frequency and measures the impedance shift caused by hybridization.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>KiCad circuit drafts</h2>
+    <p>The analog readout was drafted in KiCad around a reference resistor and sensor branch. The circuit measures the voltage across the functionalized electrode region and the voltage across R_sense, then computes sensor impedance from the voltage ratio. Filtering and amplification were added before digitization because the expected binding signal is small relative to environmental and instrument noise.</p>
+    <div class="figure-grid">
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/ctdna-kicad-full-circuit.jpg" alt="KiCad schematic for the ctDNA impedance readout circuit">
+        <figcaption>Full KiCad readout draft from the project slide deck, including sensor and reference paths, op-amp stages, and filtering blocks.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/ctdna-bandpass-filter.jpg" alt="KiCad band-pass filter schematic for the ctDNA sensor readout">
+        <figcaption>Band-pass filter draft for the 10-100 kHz measurement band, selected to reduce low-frequency noise while preserving the impedance sweep.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/ctdna-antialias-filter.jpg" alt="KiCad anti-aliasing filter schematic for the ctDNA sensor readout">
+        <figcaption>Anti-aliasing filter draft, placed before ADC sampling to prevent high-frequency artifacts from being misclassified as signal.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/ctdna-microfluidic-chip.jpg" alt="Example transparent microfluidic chip used as a design reference">
+        <figcaption>Microfluidic chip reference image from the slide deck, representing the lab-on-chip direction for blood handling and sample preparation.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>Report writeup</h2>
+    <p><strong>Biological target.</strong> The device targets breast-cancer-associated ctDNA in plasma, with TP53 selected as the representative target sequence. The sensing concept assumes that target ssDNA hybridizes to 24-bp probe sequences at the electrode surface, changing the effective capacitance and impedance of the sensor branch.</p>
+    <p><strong>Measurement principle.</strong> A 20 mV excitation is swept across the measurement band. The sensor impedance is computed from the reference resistor and measured voltage amplitudes:</p>
+    <div class="code-block">
+      Z_sensor = R_sense * (V_sensor / V_sense)<br>
+      V_sense = V_source - V_sensor
+    </div>
+    <p>With no target binding, the modeled minimum impedance is approximately 1.2 kOhm. With ctDNA hybridization near 10 kHz, the electrode voltage is expected to increase by roughly 0.06 mV, giving a modeled impedance near 1.4 kOhm.</p>
+
+    <table class="compact-table">
+      <thead>
+        <tr><th>Module</th><th>Drafted design choice</th><th>Reason</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>R_sense</td><td>470 kOhm reference resistor</td><td>Creates a voltage-divider style reference for impedance calculation.</td></tr>
+        <tr><td>Sensor</td><td>Electrode capacitance modeled near 1 pF</td><td>Represents the small capacitive response expected at the functionalized electrode interface.</td></tr>
+        <tr><td>Frequency sweep</td><td>10-100 kHz</td><td>Lower frequencies are noise-prone; higher frequencies risk washing out the biological response.</td></tr>
+        <tr><td>Analog filtering</td><td>Band-pass plus anti-aliasing stages</td><td>Reduces 60 Hz, broadband, and aliasing artifacts before ADC digitization.</td></tr>
+        <tr><td>Readout</td><td>Amplitude and phase extraction with digital lock-in style processing</td><td>Converts waveform data into impedance curves for calibration and classification.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="detail-section">
+    <h2>Post-processing pipeline</h2>
+    <p>The ADC samples the output waveform at each input frequency. The analysis extracts amplitude and phase, computes impedance using R_sense, plots Bode and Nyquist-style responses, and fits the result to an equivalent circuit. The intended model is a Randles-style circuit where Rs represents solution resistance, Rct represents charge-transfer resistance, and Cdl represents double-layer capacitance at the electrode-solution interface.</p>
+    <ul>
+      <li>Known ctDNA concentrations are measured first to build a reference database of impedance curves and fitted physical parameters.</li>
+      <li>Unknown samples are compared against the calibrated library to estimate ctDNA concentration.</li>
+      <li>The calculated concentration is scaled to account for sample-preparation losses before risk classification.</li>
+      <li>Risk thresholds from the report classify low, medium, and high concern, with medium and high results intended to prompt confirmatory diagnostic screening rather than stand alone as diagnosis.</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h2>Expected outcomes and limitations</h2>
+    <p>The expected EIS behavior is an increase in charge-transfer resistance and a decrease in double-layer capacitance after ctDNA binding at the electrode surface. Literature examples from microfluidic impedance sensors and DNA biosensors were used to justify the direction of the signal and the calibration strategy.</p>
+    <p>The report is also explicit about the main limitation: the drafted analog filters focus on 10-100 kHz, while full Randles parameter extraction often benefits from a wider sweep down toward lower frequencies. In this design stage, Rct and Cdl would be partially inferred from assumed/calibrated values rather than fully extracted across the complete ideal EIS range. That makes the next R&amp;D milestone a hardware validation pass, not a claim of clinical readiness.</p>
+  </div>
+
+  <div class="detail-section">
+    <h2>Competitive and market context</h2>
+    <p>Compared with next-generation sequencing products such as FoundationOne Liquid CDx, this concept trades genomic breadth for speed, cost, and point-of-care simplicity. Compared with tumor-informed monitoring assays such as Signatera, the project is positioned more as a low-cost screening adjunct than a patient-specific recurrence monitoring platform. The target use case is a rapid blood-test add-on that could complement routine care and help flag patients for diagnostic imaging.</p>
+    <ul>
+      <li>NGS-based liquid biopsy is detailed but slow, costly, and lab-dependent.</li>
+      <li>Protein-focused capacitive biosensors can be rapid but do not directly target ctDNA.</li>
+      <li>The proposed device emphasizes low-cost EIS hardware, microfluidic preparation, and a mutation-specific ctDNA impedance signature.</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h2>Status and next steps</h2>
+    <p>This remains a concept-stage R&amp;D project built from literature review, circuit drafting, microfluidic workflow design, and modeled signal expectations. The next steps would be fabricating the electrode/chip prototype, validating the KiCad readout with known RC loads, testing synthetic ctDNA standards in buffer, then introducing plasma-like matrices to quantify false positives from proteins, lipids, nonspecific DNA binding, and fluid-motion artifacts.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- =================== BREATHBIOMICS DETAIL =================== -->
+<div class="detail-page" id="detail-breathbiomics">
+<div class="detail-inner">
+  <button class="home-btn" onclick="showHome()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+    Back to Home
+  </button>
+  <p class="detail-eyebrow">Biomedical instrumentation · Embedded systems · Breathomics · Dec 2025</p>
+  <h1 class="detail-title">BreathBiomics Gas-Sensor Array</h1>
+  <p class="detail-lead">Portable VOC-sensing platform for noninvasive breath diagnostics. BreathBiomics explores whether low-cost embedded gas sensors can capture exhaled volatile organic compound patterns and turn them into breath signatures for future biomarker discovery, point-of-care screening, and longitudinal health monitoring.</p>
+
+  <div class="detail-stats">
+    <div class="stat-box">
+      <p class="stat-val">VOC</p>
+      <p class="stat-label">Breath signature target</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">MQ + SGP30</p>
+      <p class="stat-label">CCC prototype sensors</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">ESP32</p>
+      <p class="stat-label">Portable architecture path</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">5-10 s</p>
+      <p class="stat-label">Baseline + breath windows</p>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Project overview</h2>
+    <ul>
+      <li>Built a low-cost breath-analysis prototype to collect VOC-related sensor signals from exhaled breath.</li>
+      <li>Focused on breath as a noninvasive signal source linked to metabolism, inflammation, microbiome activity, infection, oxidative stress, and respiratory disease states.</li>
+      <li>Used an electronic-nose strategy: multiple broad, cross-sensitive gas sensors produce a pattern rather than one sensor claiming one exact biomarker.</li>
+      <li>Designed the platform around baseline collection, breath exposure, recovery recording, feature extraction, and future sensor-fusion classification.</li>
+    </ul>
+    <p><strong>One-line summary:</strong> Built an embedded breathomics prototype integrating gas sensors and environmental context to profile exhaled VOC patterns for noninvasive diagnostic applications.</p>
+  </div>
+
+  <div class="detail-section">
+    <h2>Prototype visuals</h2>
+    <div class="figure-grid">
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/breathbiomics/hardware-prototype.jpg" alt="BreathBiomics prototype hardware with microcontroller, breadboard, and gas sensor modules">
+        <figcaption>Early hardware prototype with microcontroller, breadboard wiring, and gas-sensor modules for breath VOC data collection.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/breathbiomics/data-collection.jpg" alt="BreathBiomics data collection workflow on a laptop beside the sensor circuit">
+        <figcaption>Data-collection workflow for sensor readout, signal processing, and breath-analysis scripting.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/breathbiomics/python-output.jpg" alt="Terminal output from BreathBiomics live report script">
+        <figcaption>Live reporting script reading sensor data and preparing a breath-analysis report workflow.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="timmy_portfolio_assets/breathbiomics/team-worksession.jpg" alt="Team work session for the BreathBiomics project">
+        <figcaption>CCC project work session for circuit bring-up, software integration, and presentation development.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Motivation</h2>
+    <ul>
+      <li>Traditional diagnostics can require blood draws, imaging, biopsy, or lab-based molecular testing.</li>
+      <li>Breath analysis is noninvasive, fast, repeatable, and potentially low-cost.</li>
+      <li>Human breath contains VOCs that can shift with meal state, metabolic activity, gut microbiome activity, lifestyle, respiratory inflammation, infection, and cancer metabolism.</li>
+      <li>High-end VOC analysis methods like GC-MS are powerful but expensive and less accessible for repeated point-of-care screening.</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h2>System architecture</h2>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">Breath input and baseline</p>
+          <p class="step-desc">The measurement starts with 5-10 seconds of ambient-air baseline collection before breath exposure. This baseline is critical because low-cost gas sensors drift and respond to room air contaminants.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">Gas-sensor array</p>
+          <p class="step-desc">The CCC prototype used an MQ-3 alcohol sensor and an Adafruit SGP30 for CO2/VOC-related measurements. The extended architecture generalizes this into an MQ-series array plus a Bosch environmental sensor such as BME680.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-title">Embedded controller</p>
+          <p class="step-desc">The prototype used Arduino-style acquisition for analog and I2C reads. A portable next step uses an ESP32 because it is compact, low-cost, has more processing headroom, and supports Wi-Fi/Bluetooth data transfer.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-title">Environmental correction</p>
+          <p class="step-desc">Temperature, humidity, pressure, and gas resistance contextualize every breath sample. This matters because warm, humid breath can shift gas-sensor outputs even when VOC composition is unchanged.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p class="step-title">Feature extraction and sensor fusion</p>
+          <p class="step-desc">Raw readings are normalized to baseline, smoothed, and converted into features such as peak response, delta from baseline, time-to-peak, recovery slope, area under the curve, and humidity-adjusted response.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>Measurement workflow</h2>
+    <ul>
+      <li><strong>Baseline collection:</strong> Record ambient MQ/SGP30/BME680-style readings before the breath sample.</li>
+      <li><strong>Breath exposure:</strong> User exhales into or across the sensing region for a controlled window.</li>
+      <li><strong>Response recording:</strong> Sensor curves are logged continuously while VOCs, humidity, and breath gases interact with the array.</li>
+      <li><strong>Recovery phase:</strong> Sensors return toward ambient conditions; recovery behavior can be used as another signal feature.</li>
+      <li><strong>Feature vector:</strong> Each trial becomes a breath signature vector rather than a single gas reading.</li>
+    </ul>
+    <div class="code-block">
+Sample breath signature =
+[MQ3_peak_delta, MQ135_peak_delta, BME680_humidity_delta,
+ time_to_peak, recovery_slope, normalized_gas_ratio]
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>Signal processing</h2>
+    <table class="compact-table">
+      <thead>
+        <tr><th>Step</th><th>Purpose</th><th>Example output</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Baseline normalization</td><td>Compare each breath to its own ambient-air starting point.</td><td>Delta response, percent change, response ratio</td></tr>
+        <tr><td>Smoothing</td><td>Reduce electrical and sensor noise.</td><td>Moving average, median filter, low-pass trend</td></tr>
+        <tr><td>Environmental compensation</td><td>Avoid mistaking humidity/temperature artifacts for VOC patterns.</td><td>Humidity-adjusted gas response</td></tr>
+        <tr><td>Feature extraction</td><td>Compress time-series curves into interpretable variables.</td><td>Peak, time-to-peak, area under curve, recovery slope</td></tr>
+        <tr><td>Sensor fusion</td><td>Combine cross-sensitive sensors into a pattern-level breath fingerprint.</td><td>PCA, clustering, weighted scoring, future ML classifier</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="detail-section">
+    <h2>Engineering challenges</h2>
+    <ul>
+      <li><strong>Cross-sensitivity:</strong> MQ sensors respond to broad gas classes, so the system must treat them as pattern sensors rather than molecule-specific detectors.</li>
+      <li><strong>Humidity interference:</strong> Exhaled breath is warm and humid, which can distort gas-sensor readings without environmental context.</li>
+      <li><strong>Sensor drift and warm-up:</strong> MQ sensors need stabilization and repeated baselines before comparisons are meaningful.</li>
+      <li><strong>Breath sampling variability:</strong> Distance, angle, flow rate, and duration can all change signal magnitude.</li>
+      <li><strong>Clinical translation:</strong> The platform is an engineering proof-of-concept, not a diagnostic device; controlled VOC standards and clinical datasets would be required for disease classification.</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h2>Next steps</h2>
+    <ul>
+      <li>Add a controlled breath chamber with a mouthpiece, one-way valve, defined volume, and moisture trap.</li>
+      <li>Use a flow sensor or pressure channel to standardize breath delivery.</li>
+      <li>Calibrate against known VOC standards under controlled humidity and temperature.</li>
+      <li>Build a wireless ESP32 dashboard for live curves, breath-event detection, and CSV export.</li>
+      <li>Collect repeated controlled datasets for PCA, clustering, and future machine-learning classification.</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<script>
+  function showDetail(id) {
+    event.preventDefault();
+    document.getElementById('home-page').style.display = 'none';
+    document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+    document.getElementById('detail-' + id).classList.add('active');
+    document.getElementById('nav-home-links').style.display = 'none';
+    document.getElementById('nav-back').style.display = 'flex';
+    window.scrollTo(0, 0);
+  }
+
+  function showHome() {
+    document.getElementById('home-page').style.display = 'block';
+    document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+    document.getElementById('nav-home-links').style.display = 'flex';
+    document.getElementById('nav-back').style.display = 'none';
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
