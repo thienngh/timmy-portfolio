@@ -295,6 +295,18 @@
         <p class="card-arrow">View project →</p>
       </a>
 
+      <a class="project-card featured" onclick="showDetail('strokehub')" href="#">
+        <span class="card-tag tag-brown">Sensor fusion · Rehabilitation engineering</span>
+        <h2 class="card-title">StrokeHub</h2>
+        <p class="card-desc">A 24-hour hackathon proof of concept that turns arm movement and grip into two interactive games, combining phone accelerometry, FSR sensing, camera-based validation, and machine learning for accessible motor-control feedback.</p>
+        <div class="card-metrics">
+          <span class="metric">2 motion-controlled games</span>
+          <span class="metric">~300–400 trials</span>
+          <span class="metric">Random Forest pipeline</span>
+        </div>
+        <p class="card-arrow">View project →</p>
+      </a>
+
       <a class="project-card featured" onclick="showDetail('ctdna')" href="#">
         <span class="card-tag tag-brown">Microfluidics · Electrochemistry</span>
         <h2 class="card-title">CNT Integrated Impedance Microfluidic Sensor for ctDNA</h2>
@@ -307,22 +319,21 @@
         <p class="card-arrow">View project →</p>
       </a>
 
-      <a class="project-card featured" onclick="showDetail('breathbiomics')" href="#">
+    </div>
+
+    <h2 class="project-subhead">Additional projects</h2>
+    <div class="project-grid additional-grid">
+      <a class="project-card" onclick="showDetail('breathbiomics')" href="#">
         <span class="card-tag tag-gray">Embedded · VOC sensing</span>
         <h2 class="card-title">BreathBiomics Gas-Sensor Array</h2>
-        <p class="card-desc">Arduino Uno-based breath-analysis prototype integrating MQ-series and SGP30 gas sensors with sensor-fusion logic to profile disease-associated volatile organic compound patterns in real time — a proof-of-concept for noninvasive breath diagnostics.</p>
+        <p class="card-desc">Arduino Uno-based breath-analysis prototype integrating MQ-series and SGP30 gas sensors with sensor-fusion logic to profile disease-associated volatile organic compound patterns in real time.</p>
         <div class="card-metrics">
           <span class="metric">Real-time VOC profiling</span>
-          <span class="metric">Noninvasive</span>
           <span class="metric">Sensor fusion</span>
         </div>
         <p class="card-arrow">View project →</p>
       </a>
 
-    </div>
-
-    <h2 class="project-subhead">Additional projects</h2>
-    <div class="project-grid additional-grid">
       <div class="project-card">
         <span class="card-tag tag-gray">CNT · Multi-analyte</span>
         <h2 class="card-title">6-Channel CNT Biosensor for Diabetes &amp; Cancer</h2>
@@ -341,6 +352,28 @@
           <span class="metric">BioPython</span>
           <span class="metric">Codon dictionaries</span>
           <span class="metric">HbS logic</span>
+        </div>
+        <p class="card-arrow">View code →</p>
+      </a>
+
+      <a class="project-card" href="https://github.com/thienngh/c2c12-dmd-exon44-guide-design" target="_blank" rel="noopener noreferrer">
+        <span class="card-tag tag-gray">Python · CRISPR design support</span>
+        <h2 class="card-title">C2C12 Dmd Exon 44 Guide-Design Pipeline</h2>
+        <p class="card-desc">Local command-line workflow that maps the mouse Dmd exon 44 region across genomic references, compares C3H/C2C12-oriented sequence context, and reports preliminary SpCas9 guide candidates for later validation.</p>
+        <div class="card-metrics">
+          <span class="metric">GRCm39 + C3H</span>
+          <span class="metric">Guide screening</span>
+        </div>
+        <p class="card-arrow">View code →</p>
+      </a>
+
+      <a class="project-card" href="https://github.com/thienngh/rt-pcr-primer-builder" target="_blank" rel="noopener noreferrer">
+        <span class="card-tag tag-gray">React · Molecular biology</span>
+        <h2 class="card-title">Primer Forge</h2>
+        <p class="card-desc">Local RT-qPCR primer-design assistant that imports GenBank plasmid files, reconstructs predicted spliced templates, and ranks short primer pairs using sequence and compatibility checks.</p>
+        <div class="card-metrics">
+          <span class="metric">GenBank import</span>
+          <span class="metric">Local browser workflow</span>
         </div>
         <p class="card-arrow">View code →</p>
       </a>
@@ -926,6 +959,127 @@ Serial.println(<span class="code-val">"END"</span>);
     </ul>
   </div>
 
+</div>
+</div>
+
+<!-- =================== STROKEHUB DETAIL =================== -->
+<div class="detail-page" id="detail-strokehub">
+<div class="detail-inner">
+  <button class="home-btn" onclick="showHome()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M10 3L5 8l5 5"/></svg>
+    Back to Home
+  </button>
+  <p class="detail-eyebrow">Rehabilitation engineering · Sensor fusion · Interactive systems · Hackathon</p>
+  <h1 class="detail-title">StrokeHub</h1>
+  <p class="detail-lead">A rehabilitation-style game platform that turns arm movement and grip engagement into interactive gameplay. Co-developed by a four-person team during a 24-hour hackathon, StrokeHub combines phone accelerometry, an ESP32-connected FSR grip sensor, camera-based pose tracking, and a trial-level machine-learning pipeline to summarize gameplay-derived movement-control patterns.</p>
+  <p class="detail-team-note">Hackathon proof of concept · Not a clinical diagnostic tool</p>
+
+  <div class="detail-stats">
+    <div class="stat-box highlight">
+      <p class="stat-val">24 hr</p>
+      <p class="stat-label">Hackathon build</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">2</p>
+      <p class="stat-label">Motion-controlled games</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">~300–400</p>
+      <p class="stat-label">Gameplay trials</p>
+    </div>
+    <div class="stat-box">
+      <p class="stat-val">4–5</p>
+      <p class="stat-label">Trial participants</p>
+    </div>
+  </div>
+
+  <div class="report-callout">
+    <p><strong>Scope:</strong> StrokeHub interprets sensor and gameplay patterns; it does not diagnose stroke, tremor disorders, Parkinson’s disease, or any other medical condition. Labels such as <code>high_tremor</code> refer to tremor-like motion proxies in the recorded trial.</p>
+  </div>
+
+  <div class="detail-section">
+    <h2>Two games, one sensing pipeline</h2>
+    <p>Each game acts as a structured movement task. The player calibrates a comfortable arm range, controls the game by raising or lowering the forearm, and maintains pressure on an FSR grip pad. StrokeHub logs sensor, camera, and gameplay measurements frame by frame for later trial-level analysis.</p>
+    <div class="figure-grid">
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/strokehub/neuroflap-gameplay.png" alt="NeuroFlap gameplay with movement, grip, stability, and smoothness panels">
+        <figcaption>NeuroFlap: forearm movement controls the bird while the interface tracks grip, movement stability, speed, smoothness, and gameplay performance. Interface rendered from the actual local game code with representative demonstration values.</figcaption>
+      </figure>
+      <figure class="project-figure wide">
+        <img src="timmy_portfolio_assets/strokehub/accelpong-gameplay.png" alt="AccelPong gameplay with paddle, ball, grip, and movement assessment panels">
+        <figcaption>AccelPong: forearm movement controls the paddle in a reaction-style task. Interface rendered from the actual local game code with representative demonstration values.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>Multimodal system architecture</h2>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">Phone accelerometer</p>
+          <p class="step-desc">Provides the primary arm-motion signal after personalized range calibration and maps live forearm movement into the game-control space.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">FSR grip sensing</p>
+          <p class="step-desc">An ESP32 acquires relative grip pressure so the system can track engagement, grip stability, active percentage, and grip-loss events.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-title">Camera shadow mode</p>
+          <p class="step-desc">Pose tracking estimates arm position as a secondary validation channel. Poor visibility or weak camera–phone agreement reduces or removes its contribution rather than corrupting the primary sensor measurement.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-title">Gameplay and feedback</p>
+          <p class="step-desc">Game score, survival time, difficulty, hits or misses, and sensor-control features are combined into a readable session summary.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>Data and machine-learning workflow</h2>
+    <p>Approximately 300–400 gameplay trials were collected across about 4–5 people using both games. Raw frame-level records are grouped by trial ID and converted into movement, grip, camera-validation, and gameplay features.</p>
+    <div class="code-block">Frame-level sensor + gameplay logs
+→ trial-level feature extraction
+→ multi-label Random Forest training
+→ movement and grip pattern labels
+→ user-facing session feedback</div>
+    <p>The Random Forest predicts gameplay-derived labels including <code>low_grip</code>, <code>unstable_grip</code>, <code>grip_loss</code>, <code>unstable_movement</code>, <code>high_tremor</code>, and <code>good_control</code>. The model does not continuously retrain during play. Instead, additional trial data can be incorporated through a deliberate retraining step, allowing the dataset and classifier to improve over time.</p>
+  </div>
+
+  <div class="detail-section">
+    <h2>Engineering decisions</h2>
+    <ul>
+      <li><strong>Redundant sensing:</strong> Contact-based motion, grip, and visual pose signals capture different parts of the movement task.</li>
+      <li><strong>Confidence-aware fallback:</strong> The core experience remains usable when camera visibility or pose confidence is poor.</li>
+      <li><strong>Interpretable tabular ML:</strong> Trial-level engineered features and a Random Forest fit the small proof-of-concept dataset better than claiming a continuously self-learning system.</li>
+      <li><strong>Expandable architecture:</strong> The data schema was designed so future EMG features could be added without replacing the existing sensor pipeline.</li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 2rem; display: flex; gap: 12px; flex-wrap: wrap;">
+    <a href="https://github.com/thienngh/strokehub" target="_blank" rel="noopener noreferrer" class="link-btn">
+      <svg viewBox="0 0 16 16" fill="white" width="14" height="14"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      View on GitHub
+    </a>
+  </div>
+
+  <div class="detail-divider"></div>
+
+  <div class="detail-section">
+    <h2>Team</h2>
+    <p>Co-developed during a 24-hour hackathon by Thien “Timmy” Nguyen Huu, Charles Zhang, Ryunosuke Suzuki, and Lily Duong.</p>
+  </div>
 </div>
 </div>
 
